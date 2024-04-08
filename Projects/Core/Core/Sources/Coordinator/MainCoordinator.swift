@@ -1,5 +1,3 @@
-
-
 public protocol MainCoordinator: Coordinator {
     
 }

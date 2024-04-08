@@ -1,6 +1,6 @@
-
-
+import Foundation
 import UIKit
+import SwiftUI
 
 public protocol Coordinator: AnyObject {
     var finishDelegate: CoordinatorFinishDelegate? { get set }
@@ -9,27 +9,58 @@ public protocol Coordinator: AnyObject {
     var type: CoordinatorType { get }
     
     func start()
+    func addChildCoordinator(_ child: Coordinator)
     func finish()
-    func findCoordinator(_ type: CoordinatorType) -> Coordinator?
+    func findChildCoordinator(_ type: CoordinatorType) -> Coordinator?
 }
 
 public extension Coordinator {
     
     func finish() {
+        print("\(self) will remove ")
+        
         childCoordinators.removeAll()
         finishDelegate?.coordinatorDidFinish(childCoordinator: self)
+        navigationController.viewControllers = []
         
-        print("remove after child coordinators : \(childCoordinators)")
+        print("\(self) removed ")
+
     }
     
-    func findCoordinator(_ type: CoordinatorType) -> Coordinator? {
-        var coordinators: [Coordinator] = [self]
+    func findChildCoordinator(_ type: CoordinatorType) -> Coordinator? {
         
-        if let index = coordinators.firstIndex(where: { $0.type == type }) {
-            return coordinators[index]
+        if let index = childCoordinators.firstIndex(where: { $0.type == type }) {
+            return childCoordinators[index]
         } else {
             return nil
         }
         
     }
+    
+    func addChildCoordinator(_ child: Coordinator) {
+        print("\(child) will Start")
+        
+        if let self = self as? CoordinatorFinishDelegate {
+            child.finishDelegate = self
+        }
+        childCoordinators.append(child)
+        child.start()
+        
+        print("\(child) Started")
+    }
+    
+    func push(
+        _ viewController: UIViewController,
+        isRoot: Bool = false,
+        isAnimating: Bool = true
+    ) {
+        if isRoot {
+            navigationController.viewControllers = []
+            navigationController.pushViewController(viewController, animated: isAnimating)
+        } else {
+            navigationController.pushViewController(viewController, animated: isAnimating)
+        }
+    }
 }
+
+

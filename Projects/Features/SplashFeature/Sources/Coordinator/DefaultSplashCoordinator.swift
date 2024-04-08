@@ -1,17 +1,18 @@
-
-
 import UIKit
 import ComposableArchitecture
 import SwiftUI
-
 import Core
 import Shared
 
+public enum SplashEndType {
+    case goLogin
+    case goMain
+}
 
-public final class DefaultSplashCoordinator: SplashCoordinator {
+public final class DefaultSplashCoordinator: Coordinator {
     
-    public var finishDelegate: CoordinatorFinishDelegate?
-    public var splashFinishDelegate: SplashFinishDelegate?
+    public weak var finishDelegate: CoordinatorFinishDelegate?
+    public weak var splashFinishDelegate: SplashFinishDelegate?
     
     public var navigationController: UINavigationController
     
@@ -20,22 +21,32 @@ public final class DefaultSplashCoordinator: SplashCoordinator {
     public var type: CoordinatorType = .splash
     
     public init(
-        navigationController: UINavigationController
+        navigationController: UINavigationController,
+        splashFinishDelegate: SplashFinishDelegate
     ) {
         self.navigationController = navigationController
+        self.splashFinishDelegate = splashFinishDelegate
     }
     
     public func start() {
-        let splashView = UIHostingController(rootView: SplashView(store: .init(initialState: SplashStore.State(), reducer: {
-            SplashStore(coordinator: self)
-        })))
+                
+        let splashView = UIHostingController(
+            rootView: SplashView(
+                store: .init(initialState: SplashStore.State(),
+                             reducer: {
+                                 SplashStore(coordinator: self)
+                             })
+            )
+        )
         
-        navigationController.pushViewController(splashView, animated: false)
+        push(splashView, isRoot: true, isAnimating: false)
         
     }
     
-    public func splashEnded(_ type: SplashType) {
-        splashFinishDelegate?.finish(type)
+    public func splashEnded(_ type: SplashEndType) {
+        navigationController.viewControllers.removeAll()
         self.finish()
+        
+        splashFinishDelegate?.finish(type)
     }
 }

@@ -8,17 +8,17 @@ import Core
 
 public final class SplashStore: Reducer {
     
-    var coordinator: SplashCoordinator?
+    var coordinator: DefaultSplashCoordinator?
     
     public struct State {
         
     }
     
     public enum Action {
-        case splashEnded(SplashType)
+        case splashEnded(SplashEndType)
     }
     
-    public init(coordinator: SplashCoordinator?) {
+    public init(coordinator: DefaultSplashCoordinator?) {
         self.coordinator = coordinator
     }
     
