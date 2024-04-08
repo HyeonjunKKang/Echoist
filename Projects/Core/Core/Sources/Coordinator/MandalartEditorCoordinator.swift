@@ -1,0 +1,5 @@
+
+
+public protocol MandalartEditorCoordinator: Coordinator {
+    
+}
