@@ -22,6 +22,7 @@ public extension Dep {
 }
 
 public extension Dep {
+    static let data = Dep.project(target: "Data", path: .data)
     static let domain = Dep.project(target: "Domain", path: .domain)
     static let shared = Dep.project(target: "Shared", path: .shared)
     static let thirdPartyLib = Dep.project(target: "ThirdPartyLib", path: .thirdPartyLib)

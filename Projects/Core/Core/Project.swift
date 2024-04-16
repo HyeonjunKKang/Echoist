@@ -14,7 +14,7 @@ let project = Project.makeModule(
     name: "Core",
     targets: [.dynamicFramework],
     internalDependencies: [
-        .Core.designKit,
-        .Core.networkKit
+        .data,
+        .Core.designKit
     ]
 )

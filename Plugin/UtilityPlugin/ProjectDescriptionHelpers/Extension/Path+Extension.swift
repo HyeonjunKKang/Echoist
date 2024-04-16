@@ -25,6 +25,10 @@ public extension Path {
         return .relativeToRoot("Projects/Domain")
     }
     
+    static var data: Self {
+        return .relativeToRoot("Projects/Data")
+    }
+    
     static var shared: Self {
         return .relativeToRoot("Projects/Shared")
     }

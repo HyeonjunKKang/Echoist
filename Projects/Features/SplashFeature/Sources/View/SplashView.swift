@@ -1,6 +1,7 @@
 import SwiftUI
 import ComposableArchitecture
 import Shared
+import TCACoordinators
 
 struct SplashView: View {
     

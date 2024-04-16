@@ -13,6 +13,6 @@ let project = Project.makeModule(
     name: "NetworkKit",
     targets: [.dynamicFramework],
     internalDependencies: [
-        .shared
+        .domain
     ]
 )

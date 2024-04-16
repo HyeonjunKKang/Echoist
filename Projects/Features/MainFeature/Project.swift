@@ -8,7 +8,7 @@ let project = Project.makeModule(
     internalDependencies: [
     ],
     interfaceDependencies: [
-        .domain
+        .Core.core
     ]
 )
 
