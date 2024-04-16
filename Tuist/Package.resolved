@@ -19,6 +19,15 @@
       }
     },
     {
+      "identity" : "flowstacks",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/johnpatrickmorgan/FlowStacks",
+      "state" : {
+        "revision" : "a2b974b81612e1e8ee3ecd757d936a2919527356",
+        "version" : "0.4.1"
+      }
+    },
+    {
       "identity" : "moya",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Moya/Moya.git",
@@ -142,6 +151,15 @@
       "state" : {
         "revision" : "d9e72f3083c08375794afa216fb2f89c0114f303",
         "version" : "1.2.1"
+      }
+    },
+    {
+      "identity" : "tcacoordinators",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/johnpatrickmorgan/TCACoordinators",
+      "state" : {
+        "revision" : "c0060666c67e431268bd6b9897da2787f563a21b",
+        "version" : "0.8.0"
       }
     },
     {

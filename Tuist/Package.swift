@@ -10,6 +10,7 @@ import PackageDescription
         productTypes: [
             "Moya": .framework,
             "ComposableArchitecture": .framework,
+            "TCACoordinators": .framework
         ], baseSettings: Settings.settings(configurations: XCConfig.framework)
         
     )
@@ -18,7 +19,8 @@ import PackageDescription
 let package = Package(
     name: "EggtartPackage",
     dependencies: [
-        .package(url: "https://github.com/Moya/Moya.git", .upToNextMajor(from: "15.0.3")),
-        .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", .upToNextMajor(from: "1.9.2")),
+        .package(url: "https://github.com/Moya/Moya.git", exact: "15.0.3"),
+        .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", exact: "1.9.2"),
+        .package(url: "https://github.com/johnpatrickmorgan/TCACoordinators", exact: "0.8.0")
     ]
 )
